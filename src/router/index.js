@@ -19,5 +19,13 @@ export default new Router({
         title: '注册'
       }
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/view/login'),
+      meta: {
+        title: '登录'
+      }
+    }
   ]
 })

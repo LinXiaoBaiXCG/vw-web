@@ -1,59 +1,68 @@
 <template>
+  <div>
     <van-cell-group>
         <van-field
-                v-model="loginForm.username"
+                v-model="form.username"
                 required
                 clearable
                 label="用户名"
                 placeholder="请输入用户名"
         />
         <van-field
-                v-model="loginForm.phone"
+                v-model="form.phone"
                 required
                 clearable
                 label="手机号码"
                 placeholder="请输入手机号码"
         />
         <van-field
-                v-model="loginForm.password"
+                v-model="form.password"
                 type="password"
                 label="密码"
                 placeholder="请输入密码"
                 required
+                clearable
         />
         <van-field
-                v-model="loginForm.checkPassword"
+                v-model="form.checkPassword"
                 type="password"
                 label="确认密码"
                 placeholder="请再次输入密码"
                 required
+                clearable
         />
-        <van-field v-model="code" placeholder="请输入用验证码" />
-        <div class="login-code" style="height: 100px">
-            <img :src="codeUrl" @click="getCode">
+      <!--验证码-->
+        <van-field v-model="form.code" label="验证码" placeholder="请输入用验证码" required style="width: 70%;float: left" clearable/>
+        <div class="login-code" style="height: 44px;float: left" @click="getCode">
+            <img :src="codeUrl">
         </div>
+      <!--登录按钮-->
+      <div style="margin-left: 40%;margin-top: 50px"><van-button type="primary" size="small" @click="doRegister">注册</van-button></div>
     </van-cell-group>
+  </div>
 </template>
 
 <script>
-import { Field } from 'vant';
+import { Field,Button,Notify } from 'vant';
 import { getCodeImg } from '@/api/login'
+import { register } from '@/api/user'
 export default {
     name: "register",
     components: {
-      [Field.name]: Field
+      [Field.name]: Field,
+      [Button.name]: Button,
+      [Notify.name]: Notify
     },
     data() {
         return {
             codeUrl:'',
-            code:'',
-            loginForm: {
+            form: {
                 username: '',
                 password: '',
                 phone: '',
                 uuid: '',
-                password :'',
-                checkPassword: ''
+                checkPassword: '',
+                code:''
             }
         };
     },
@@ -64,9 +73,47 @@ export default {
         getCode(){
             getCodeImg().then(res =>{
                 this.codeUrl = 'data:image/gif;base64,' + res.img
-                this.loginForm.uuid = res.uuid
+                this.form.uuid = res.uuid
             })
-        }
+        },
+      doRegister(){
+          if (this.form.username == ''){
+            Notify({
+              message: '用户名不能为空!',
+              duration: 2500
+            });
+          }else if (this.form.phone == ''){
+            Notify({
+              message: '手机号不能为空!',
+              duration: 2500
+            });
+          } else if (this.form.password == ''){
+            Notify({
+              message: '密码不能为空!',
+              duration: 2500
+            });
+          }else if (this.form.checkPassword == ''){
+            Notify({
+              message: '确认密码不能为空!',
+              duration: 2500
+            });
+          }else if (this.form.code == ''){
+            Notify({
+              message: '验证码不能为空!',
+              duration: 2500
+            });
+          }else if (this.form.password != this.form.checkPassword){
+            Notify({
+              message: '输入的两次密码不一致!',
+              duration: 2500
+            });
+          } else {
+            register(this.form).then(res =>{
+              Toast.success('注册成功');
+              //TODO 跳转到登录页面
+            })
+          }
+      }
     }
 }
 </script>

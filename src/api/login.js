@@ -6,3 +6,10 @@ export function getCodeImg() {
     method: 'get'
   })
 }
+
+export function wxLogin() {
+  return request({
+    url: 'api/wxLogin',
+    method: 'get'
+  })
+}
