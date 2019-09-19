@@ -53,5 +53,13 @@ export default new Router({
         title: '通知'
       }
     },
+    {
+      path: '/my',
+      name: 'my',
+      component: () => import('@/view/my'),
+      meta: {
+        title: '我的'
+      }
+    },
   ]
 })
