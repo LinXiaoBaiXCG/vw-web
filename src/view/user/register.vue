@@ -36,14 +36,14 @@
         <div class="login-code" style="height: 44px;float: left" @click="getCode">
             <img :src="codeUrl">
         </div>
-      <!--登录按钮-->
-      <div style="margin-left: 40%;margin-top: 50px"><van-button type="primary" size="small" @click="doRegister">注册</van-button></div>
+      <!--注册按钮-->
+      <div style="margin:60px 20% 0px 20%"><van-button type="primary" size="large" @click="doRegister">注册</van-button></div>
     </van-cell-group>
   </div>
 </template>
 
 <script>
-import { Field,Button,Notify } from 'vant';
+import { Field,Button,Notify,Toast } from 'vant';
 import { getCodeImg } from '@/api/login'
 import { register } from '@/api/user'
 export default {
@@ -51,7 +51,8 @@ export default {
     components: {
       [Field.name]: Field,
       [Button.name]: Button,
-      [Notify.name]: Notify
+      [Notify.name]: Notify,
+      [Toast.name]: Toast
     },
     data() {
         return {
@@ -110,7 +111,7 @@ export default {
           } else {
             register(this.form).then(res =>{
               Toast.success('注册成功');
-              //TODO 跳转到登录页面
+              this.$router.push("/login")
             })
           }
       }
