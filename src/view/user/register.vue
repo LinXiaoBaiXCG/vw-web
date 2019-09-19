@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { Field,Button,Notify,Toast } from 'vant';
+import { Field,Button,Notify,Toast,CellGroup } from 'vant';
 import { getCodeImg } from '@/api/login'
 import { register } from '@/api/user'
 export default {
@@ -52,7 +52,8 @@ export default {
       [Field.name]: Field,
       [Button.name]: Button,
       [Notify.name]: Notify,
-      [Toast.name]: Toast
+      [Toast.name]: Toast,
+      [CellGroup.name]: CellGroup
     },
     data() {
         return {

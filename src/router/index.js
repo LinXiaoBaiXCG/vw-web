@@ -26,6 +26,22 @@ export default new Router({
       meta: {
         title: '登录'
       }
-    }
+    },
+    {
+      path: '/problem',
+      name: 'problem',
+      component: () => import('@/view/problem'),
+      meta: {
+        title: '添加问题'
+      }
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: () => import('@/view/'),
+      meta: {
+        title: '首页'
+      }
+    },
   ]
 })

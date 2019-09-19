@@ -1,9 +1,12 @@
 <template>
     <div>
       <!--LOGO-->
-      <div align="center">
-        <img src="../assets/logo_1.png" style="margin-top: 30px;margin-bottom: 30px">
-      </div>
+      <van-cell-group>
+      <van-cell>
+        <div align="center">
+        <img src="../assets/logo_1.png">
+        </div>
+      </van-cell>
       <van-field
         v-model="form.phone"
         label="手机号码"
@@ -15,36 +18,36 @@
         label="密码"
         left-icon="eye-o"
       />
-      <div style="margin-top: 5px">
-      <van-button plain type="info" size="mini" style="margin-left: 40px" @click="doRegister">注册</van-button>
+      <van-cell>
+      <van-button plain type="info" size="mini" style="margin-left: 40px" to="register">注册</van-button>
       <van-button plain type="info" size="mini" style="margin-right: 40px;float: right" @click="doUpdatePassword">忘记密码？</van-button>
-      </div>
+      </van-cell>
       <!--登录按钮-->
-      <div style="margin-top: 20px">
+<!--      <van-cell>-->
         <van-button type="primary" size="large" @click="doLogin">登录</van-button>
-      </div>
+<!--      </van-cell>-->
       <!--分割线-->
-      <div style="margin-top: 10px">
-        <hr class="hr-line">
-        <p style="float: left;color: #546a5e">使用其他方式登录</p>
-        <hr class="hr-line">
-      </div>
+        <van-divider>其他方式登录</van-divider>
       <!--微信-->
-      <div>
+      <van-cell>
         <img src="../assets/weixin.png" style="margin: 20px 120px 10px 20px" @click="wxLogin">
-      </div>
+      </van-cell>
+      </van-cell-group>
     </div>
 </template>
 
 <script>
-  import { Field,Button,Notify } from 'vant';
+  import { Field,Button,Notify,CellGroup,Cell,Divider } from 'vant';
   import { wxLogin,login } from '@/api/login';
     export default {
       name: "login",
       components: {
         [Field.name]: Field,
         [Button.name]: Button,
-        [Notify.name]: Notify
+        [Notify.name]: Notify,
+        [CellGroup.name]: CellGroup,
+        [Cell.name]: Cell,
+        [Divider.name]: Divider
       },
       data() {
         return {
@@ -59,9 +62,6 @@
           wxLogin().then(res=>{
             window.location.href = res.toString()
           })
-        },
-        doRegister(){
-          this.$router.push("/register")
         },
         doLogin(){
           if (this.form.phone == ''){
@@ -91,10 +91,5 @@
 </script>
 
 <style scoped>
-  .hr-line{
-    border: 0.5px #000000 solid;
-    float: left;
-    width: 32%;
-    margin-top: 28px;
-  }
+
 </style>
