@@ -24,7 +24,7 @@
     </van-tabbar-item>
     <van-tabbar-item
       replace
-      to="/notice"
+      to="/my"
       icon="friends"
     >
       我的

@@ -1,10 +1,8 @@
 <template>
     <div>
-      <!--搜索框-->
-      <search/>
       <!--标签页-->
       <van-tabs v-model="active" sticky color="#1989FA">
-        <van-tab title="关注">
+        <van-tab title="通知">
           <van-list
             v-model="loading"
             :finished="finished"
@@ -19,8 +17,7 @@
             />
           </van-list>
         </van-tab>
-        <van-tab title="推荐">推荐</van-tab>
-        <van-tab title="热门">热门</van-tab>
+        <van-tab title="私信">私信</van-tab>
       </van-tabs>
       <!--标签栏-->
       <tabbar/>

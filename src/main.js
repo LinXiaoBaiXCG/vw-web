@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import 'vant/lib/index.css';
+//引入微信标题
+import VueWechatTitle from 'vue-wechat-title';
+Vue.use(VueWechatTitle)
 
 Vue.config.productionTip = false
 
@@ -13,4 +16,9 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
 })
