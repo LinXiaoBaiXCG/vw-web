@@ -38,6 +38,22 @@ export default new Router({
       }
     },
     {
+      path: '/answer',
+      name: 'answer',
+      component: () => import('@/view/answer'),
+      meta: {
+        title: '回答问题'
+      }
+    },
+    {
+      path: '/details',
+      name: 'details',
+      component: () => import('@/view/answer/details'),
+      meta: {
+        title: '详细回答'
+      }
+    },
+    {
       path: '/home',
       name: 'home',
       component: () => import('@/view/'),
