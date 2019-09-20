@@ -28,6 +28,7 @@ import Tabbar from '@/components/Tabbar'
 import Search from '@/components/Search'
 import { Tab, Tabs,List,Cell } from 'vant';
 export default {
+    name:"notice",
     components:{
       tabbar: Tabbar,
       search: Search,

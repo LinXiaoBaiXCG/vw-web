@@ -12,7 +12,7 @@
   import Tabbar from '@/components/Tabbar'
   import Search from '@/components/Search'
     export default {
-      name: "index",
+      name: "my",
       components:{
         tabbar: Tabbar,
         search: Search

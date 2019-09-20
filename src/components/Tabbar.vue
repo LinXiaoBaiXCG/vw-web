@@ -32,7 +32,7 @@
   </van-tabbar>
     <van-popup v-model="show" position="bottom" :style="{ height: '22%' }">
       <van-cell title="提个问题" is-link to="problem" />
-      <van-cell title="回答问题" is-link to="login" />
+      <van-cell title="回答问题" is-link to="answer" />
       <van-cell title="取消" is-link arrow-direction="down" @click="cancle"/>
     </van-popup>
   </div>

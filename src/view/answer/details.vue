@@ -17,7 +17,6 @@
   import Search from '@/components/Search'
   import {Cell, CellGroup, Icon} from 'vant'
   import {details} from '@/api/answer'
-
   export default {
     name: "details",
     components: {
@@ -33,13 +32,14 @@
     },
     created() {
       this.$nextTick(() => {
-        this.getDetails()
+        let id = this.$route.params.id
+        this.getDetails(id)
       })
     },
     methods: {
       //初始化回答信息
-      getDetails() {
-        details(4).then(res => {
+      getDetails(id) {
+        details(id).then(res => {
           this.result = res
         })
       }

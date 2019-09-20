@@ -41,6 +41,7 @@
   import {list} from '@/api/answer'
 
   export default {
+    name:"home",
     components: {
       tabbar: Tabbar,
       search: Search,
@@ -68,8 +69,14 @@
     },
     methods: {
       //查看详情
-      lookDetails(item) {
-        alert(item)
+      lookDetails(id) {
+        //通过路由传参
+        this.$router.push({
+          name: "details",
+          params: {
+            id:id
+          }
+        })
       },
       //列表加载
       onLoad() {
