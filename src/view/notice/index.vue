@@ -26,7 +26,8 @@
 <script>
 import Tabbar from '@/components/Tabbar'
 import Search from '@/components/Search'
-import { Tab, Tabs,List,Cell } from 'vant';
+import { Tab, Tabs,List,Cell } from 'vant'
+import { getToken } from '@/utils/auth'
 export default {
     name:"notice",
     components:{
@@ -44,6 +45,15 @@ export default {
           loading: false,
           finished: false
         };
+    },
+    created() {
+      //验证是否登录
+      if (getToken()){
+        this.$router.replace("/notice")
+        this.isLogin()
+      } else{
+        this.$router.replace("/login")
+      }
     },
     methods: {
       lookDetails(item){
@@ -63,6 +73,9 @@ export default {
             this.finished = true;
           }
         }, 500);
+      },
+      isLogin(){
+        alert("我已经登录了")
       }
     }
 }

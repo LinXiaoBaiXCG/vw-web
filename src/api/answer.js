@@ -22,3 +22,11 @@ export function details(id) {
     method: 'get',
   })
 }
+
+export function agree(params) {
+  return request({
+    url: '/api/answer/agree',
+    method: 'get',
+    params
+  })
+}

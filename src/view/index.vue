@@ -21,7 +21,7 @@
             <template slot="title">
               <span class="custom-title">{{item.problemTitle}}</span><br/>
               <van-icon :name="item.avatar" /><span class="lable">{{item.username}}</span><br/>
-              <span class="custom-label">{{item.content}}</span>
+              <span class="custom-value">{{item.content}}</span>
             </template>
           </van-cell>
         </van-list>
@@ -73,7 +73,7 @@
         //通过路由传参
         this.$router.push({
           name: "details",
-          params: {
+          query: {
             id:id
           }
         })
@@ -113,7 +113,7 @@
 .custom-title{
   font-weight: bold;
 }
-.custom-label{
+.custom-value{
   font-size: 11px;
   overflow: hidden;
   -webkit-line-clamp: 2;

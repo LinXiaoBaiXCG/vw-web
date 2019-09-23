@@ -39,6 +39,7 @@
 <script>
   import { Field,Button,Notify,CellGroup,Cell,Divider } from 'vant';
   import { wxLogin,login } from '@/api/login';
+  import { setToken } from '@/utils/auth';
     export default {
       name: "login",
       components: {
@@ -76,7 +77,8 @@
             });
           }else {
             login(this.form).then(res =>{
-              alert("登录成功！")
+              setToken(res)
+              this.$router.push("/my")
             })
           }
         },
