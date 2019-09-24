@@ -16,10 +16,11 @@ export function list(params) {
   })
 }
 
-export function details(id) {
+export function details(params) {
   return request({
-    url: '/api/answer/details/' + id,
+    url: '/api/answer/details',
     method: 'get',
+    params
   })
 }
 

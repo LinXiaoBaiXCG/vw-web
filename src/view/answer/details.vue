@@ -27,8 +27,7 @@
       <template slot="label">
         <span class="custom-label">这里应该是底部</span>
       </template>
-      <van-button v-if="result.isAgree === 0" plain type="info" size="mini" @click="doAgree( 1)"><van-icon name="good-job" />赞同{{this.result.agreeCount}}</van-button>
-      <van-button v-if="result.isAgree === 1" type="info" size="mini" @click="doAgree(2)"><van-icon name="good-job" />已赞同{{this.result.agreeCount}}</van-button>
+      <van-button type="info" size="mini" @click="doAgree"><van-icon name="good-job" /> {{this.result.userIsAgree? '已赞同':'赞同'}} {{this.result.agreeCount}}</van-button>
     </van-cell>
   </div>
 </template>
@@ -37,6 +36,7 @@
   import Search from '@/components/Search'
   import {Cell, CellGroup, Icon,Button } from 'vant'
   import {details, agree} from '@/api/answer'
+  import Cookies from 'js-cookie'
   export default {
     name: "detail",
     components: {
@@ -48,7 +48,10 @@
     },
     data() {
       return {
-        result: {}
+        userUuid: '',
+        result: {
+          isAgree: true
+        }
       }
     },
     created() {
@@ -60,7 +63,12 @@
     methods: {
       //初始化回答信息
       getDetails(id) {
-        details(id).then(res => {
+        this.userUuid = Cookies.get("uuid")
+        let params =  {
+          id: id,
+          userUuid: this.userUuid
+        }
+        details(params).then(res => {
           this.result = res
         })
       },
@@ -68,12 +76,18 @@
         alert("查询"+this.result.problemId+"成功!");
       },
       //点赞回答
-      doAgree(type){
+      doAgree(){
         let params = {uuid: this.result.uuid,
-                      type: type,
-                      userId: 1 }
+                      userIsAgree: !this.result.userIsAgree,
+                      userUuid: this.userUuid }
         agree(params).then(res =>{
-          alert("点赞成功！")
+          if (res.userIsAgree) {
+            this.result.userIsAgree = res.userIsAgree;
+            this.result.agreeCount += 1
+          }else{
+            this.result.userIsAgree = res.userIsAgree;
+            this.result.agreeCount -= 1
+          }
         })
       }
     }

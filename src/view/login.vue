@@ -40,6 +40,7 @@
   import { Field,Button,Notify,CellGroup,Cell,Divider } from 'vant';
   import { wxLogin,login } from '@/api/login';
   import { setToken } from '@/utils/auth';
+  import Cookies from 'js-cookie'
     export default {
       name: "login",
       components: {
@@ -77,7 +78,9 @@
             });
           }else {
             login(this.form).then(res =>{
-              setToken(res)
+              setToken(res.token)
+              Cookies.set("id", res.user.id)
+              Cookies.set("uuid", res.user.uuid)
               this.$router.push("/my")
             })
           }
