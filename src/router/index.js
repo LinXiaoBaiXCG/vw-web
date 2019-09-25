@@ -77,5 +77,13 @@ export default new Router({
         title: '我的'
       }
     },
+    {
+      path: '/all',
+      name: 'all',
+      component: () => import('@/view/answer/all'),
+      meta: {
+        title: '全部回答'
+      }
+    },
   ]
 })

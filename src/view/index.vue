@@ -116,7 +116,7 @@
 .custom-value{
   font-size: 11px;
   overflow: hidden;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
