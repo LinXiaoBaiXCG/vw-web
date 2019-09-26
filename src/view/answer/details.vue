@@ -36,7 +36,6 @@
   import Search from '@/components/Search'
   import {Cell, CellGroup, Icon,Button } from 'vant'
   import {details, agree} from '@/api/answer'
-  import Cookies from 'js-cookie'
   export default {
     name: "detail",
     components: {
@@ -72,22 +71,21 @@
         this.$router.push({
           name: "all",
           query: {
-            id:this.result.problemId
+            problemId:this.result.problemId
           }
         })
       },
       //点赞回答
       doAgree(){
         let params = {uuid: this.result.uuid,
-                      userIsAgree: !this.result.userIsAgree,
-                      userUuid: this.userUuid }
+                      userIsAgree: !this.result.userIsAgree}
         agree(params).then(res =>{
           if (res.userIsAgree) {
             this.result.userIsAgree = res.userIsAgree;
-            this.result.agreeCount += 1
+            this.result.agreeCount = res.agreeCount
           }else{
             this.result.userIsAgree = res.userIsAgree;
-            this.result.agreeCount -= 1
+            this.result.agreeCount = res.agreeCount
           }
         })
       }

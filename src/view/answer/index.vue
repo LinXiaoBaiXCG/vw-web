@@ -39,11 +39,17 @@
     data() {
       return {
         form: {
-          problemId: 1,
-          problemTitle: '1+1为什么等于2？',
+          problemId: '',
+          problemTitle: '',
           content: ''
         }
       }
+    },
+    created() {
+      this.$nextTick(() => {
+        this.form.problemId = this.$route.query.problemId
+        this.form.problemTitle = this.$route.query.problemTitle
+      })
     },
     methods: {
       //发布按钮

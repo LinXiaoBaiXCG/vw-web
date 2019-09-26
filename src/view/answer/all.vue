@@ -17,7 +17,7 @@
       <template slot="title">
         <span class="custom-title">全部</span>
       </template>
-      <van-button plain type="info" size="mini" style="float: right"><van-icon name="edit" />写回答</van-button>
+      <van-button plain type="info" size="mini" style="float: right" @click="doEdit"><van-icon name="edit" />写回答</van-button>
     </van-cell>
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
       <van-list
@@ -68,7 +68,7 @@
             isLoading: false,
             params: {
               type: 1,
-              size: 2,
+              size: 10,
               current: 1,
               problemId: ''
             }
@@ -118,6 +118,16 @@
           this.params.current = 1;
           this.onLoad();
           this.isLoading = false;
+        },
+        //写回答
+        doEdit(){
+          this.$router.push({
+            name: "answer",
+            query: {
+              problemId: this.one.problemId,
+              problemTitle: this.one.problemTitle
+            }
+          })
         }
       }
     }
