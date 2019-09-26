@@ -13,8 +13,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (getToken()) {
-      // config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
-      config.headers['Authorization'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     }
     config.headers['Content-Type'] = 'application/json; charset=utf-8'
     return config
@@ -61,10 +60,10 @@ service.interceptors.response.use(
       }
     }
     if (code === 401) {
-      // Notify({
-      //   message: '登录状态已过期',
-      //   duration: 2500
-      // });
+      Notify({
+        message: '账户异常，请登录',
+        duration: 2500
+      });
       router.push({ path: '/login' })
     } else if (code === 403) {
       // router.push({ path: '/401' })

@@ -10,7 +10,7 @@
       width="10rem"
       height="10rem"
       fit="cover"
-      src="https://img.yzcdn.cn/vant/cat.jpeg"
+      :src="this.result.avatar"
     />
     </van-uploader>
     </div>
@@ -18,12 +18,12 @@
     <van-grid>
       <van-grid-item text="我的回答" >
         <template slot="icon">
-          <span>10</span>
+          <span>{{this.result.answerCount}}</span>
         </template>
       </van-grid-item>
       <van-grid-item text="我的提问" >
         <template slot="icon">
-          <span>11</span>
+          <span>{{this.result.problemCount}}</span>
         </template>
       </van-grid-item>
       <van-grid-item text="关注的问题" >
@@ -46,7 +46,7 @@
 <script>
   import Tabbar from '@/components/Tabbar';
   import Search from '@/components/Search';
-  import { getToken } from '@/utils/auth';
+  import { getUserInfo } from '@/api/user';
   import { Grid, GridItem, Uploader, Image, CellGroup } from 'vant';
     export default {
       name: "my",
@@ -62,25 +62,19 @@
       data() {
         return {
           result: {
-            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg'
-          },
-          fileList: [
-            { url: 'https://img.yzcdn.cn/vant/cat.jpeg' },
-            // // Uploader 根据文件后缀来判断是否为图片文件
-            // // 如果图片 URL 中不包含类型信息，可以添加 isImage 标记来声明
-            // { url: 'https://cloud-image', isImage: true }
-          ]
+          }
         }
       },
       created() {
-        //验证是否登录
-        if (getToken()){
-          this.$router.replace("/my")
-        } else{
-          this.$router.replace("login")
-        }
+        this.init()
       },
       methods: {
+        //初始化用户信息
+        init() {
+          getUserInfo().then(res =>{
+            this.result = res
+          })
+        },
         afterRead(file) {
           // 此时可以自行将文件上传至服务器
           console.log(file);

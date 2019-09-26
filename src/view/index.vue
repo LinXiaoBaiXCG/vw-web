@@ -62,7 +62,7 @@
         isLoading: false,
         params: {
           type: 1,
-          size: 2,
+          size: 10,
           current: 1
         }
       };

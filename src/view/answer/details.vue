@@ -63,17 +63,18 @@
     methods: {
       //初始化回答信息
       getDetails(id) {
-        this.userUuid = Cookies.get("uuid")
-        let params =  {
-          id: id,
-          userUuid: this.userUuid
-        }
-        details(params).then(res => {
+        details(id).then(res => {
           this.result = res
         })
       },
-      getAllProblem(problemId){
-        alert("查询"+this.result.problemId+"成功!");
+      //跳转至获取全部回答
+      getAllProblem(){
+        this.$router.push({
+          name: "all",
+          query: {
+            id:this.result.problemId
+          }
+        })
       },
       //点赞回答
       doAgree(){

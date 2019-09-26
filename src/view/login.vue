@@ -23,11 +23,9 @@
       <van-button plain type="info" size="mini" style="margin-right: 40px;float: right" @click="doUpdatePassword">忘记密码？</van-button>
       </van-cell>
       <!--登录按钮-->
-<!--      <van-cell>-->
         <van-button type="primary" size="large" @click="doLogin">登录</van-button>
-<!--      </van-cell>-->
       <!--分割线-->
-        <van-divider>其他方式登录</van-divider>
+        <van-divider style="margin-top: 70px">其他方式登录</van-divider>
       <!--微信-->
       <van-cell>
         <img src="../assets/weixin.png" style="margin: 20px 120px 10px 20px" @click="wxLogin">

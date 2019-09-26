@@ -8,7 +8,7 @@
       <span class="custom-title">{{this.one.problemTitle}}</span><br/>
     </template>
     <template slot="label">
-      <span class="custom-label">这里应该是简介</span>
+      <span class="custom-label">{{this.one.problemDetails}}</span>
     </template>
     <van-button plain type="info" size="mini" style="float: right"><van-icon name="plus" />关注</van-button>
   </van-cell>
@@ -47,7 +47,17 @@
   import {Cell, CellGroup, Icon,Button, PullRefresh, List, Sticky} from 'vant'
   import {list} from '@/api/answer'
     export default {
-        name: "all",
+      name: "all",
+      components: {
+        search: Search,
+        [Cell.name]: Cell,
+        [CellGroup.name]: CellGroup,
+        [Icon.name]: Icon,
+        [Button.name]: Button,
+        [PullRefresh.name]: PullRefresh,
+        [List.name]: List,
+        [Sticky.name]: Sticky,
+      },
       data() {
           return {
             active: '',
@@ -60,19 +70,14 @@
               type: 1,
               size: 2,
               current: 1,
-              problemId: 1
+              problemId: ''
             }
         }
       },
-      components: {
-        search: Search,
-        [Cell.name]: Cell,
-        [CellGroup.name]: CellGroup,
-        [Icon.name]: Icon,
-        [Button.name]: Button,
-        [PullRefresh.name]: PullRefresh,
-        [List.name]: List,
-        [Sticky.name]: Sticky,
+      created() {
+        this.$nextTick(() => {
+          this.params.problemId = this.$route.query.problemId
+        })
       },
       methods: {
         //查看详情

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import {Field,CellGroup,Button,Cell } from 'vant'
+  import {Field,CellGroup,Button,Cell,Toast } from 'vant'
   import {create} from '@/api/problem'
     export default {
       name: "problem",
@@ -40,7 +40,6 @@
       data() {
           return {
             form: {
-              userId: 1,
               title: '',
               details: ''
             }
@@ -50,7 +49,10 @@
         //发布按钮
         doRelease(){
           create(this.form).then(res =>{
-            alert("a")
+            Toast.success('发布成功');
+            setTimeout(() =>{
+              this.$router.push("/")
+            },2000);
           })
         }
       }

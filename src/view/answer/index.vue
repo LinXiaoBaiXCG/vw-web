@@ -39,7 +39,6 @@
     data() {
       return {
         form: {
-          userId: 1,
           problemId: 1,
           problemTitle: '1+1为什么等于2？',
           content: ''

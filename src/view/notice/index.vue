@@ -47,13 +47,7 @@ export default {
         };
     },
     created() {
-      //验证是否登录
-      if (getToken()){
-        this.$router.replace("/notice")
-        this.isLogin()
-      } else{
-        this.$router.replace("/login")
-      }
+
     },
     methods: {
       lookDetails(item){
