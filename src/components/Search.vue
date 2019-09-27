@@ -14,6 +14,7 @@
       round
       position="bottom"
       :style="{ height: '92%' }"
+      :overlay="overlay"
     >
       <van-sticky :offset-top="50">
         <van-cell title="搜索结果:">
@@ -57,7 +58,7 @@
 </template>
 
 <script>
-  import { Search, Popup, Cell, Sticky,Icon } from 'vant'
+  import { Search, Popup, Cell, Sticky, Icon, Toast } from 'vant'
     export default {
       name: "Search",
       components: {
@@ -65,17 +66,23 @@
           [Popup.name]:Popup,
           [Cell.name]:Cell,
           [Sticky.name]:Sticky,
-          [Icon.name]:Icon
+          [Icon.name]:Icon,
+          [Toast.name]:Toast,
       },
       data() {
         return {
           show: false,
+          overlay: false,
           value: ''
         }
       },
       methods: {
         showSearchPopup(){
-          this.show = true
+          if (this.value === ''){
+            Toast('请输入搜索关键词');
+          } else {
+            this.show = true
+          }
         },
         doClose(){
           this.show = false
