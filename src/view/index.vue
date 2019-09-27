@@ -55,7 +55,7 @@
     },
     data() {
       return {
-        active: '',
+        active: 1,
         list: [],
         loading: false,
         finished: false,
