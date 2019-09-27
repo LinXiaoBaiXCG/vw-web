@@ -7,3 +7,11 @@ export function create(data) {
     data
   })
 }
+
+export function userProblem(params) {
+  return request({
+    url: '/api/problem/userProblem',
+    method: 'get',
+    params
+  })
+}

@@ -21,7 +21,7 @@
           <span>{{this.result.answerCount}}</span>
         </template>
       </van-grid-item>
-      <van-grid-item text="我的提问" >
+      <van-grid-item text="我的提问" @click="goMyProblem">
         <template slot="icon">
           <span>{{this.result.problemCount}}</span>
         </template>
@@ -78,6 +78,9 @@
         afterRead(file) {
           // 此时可以自行将文件上传至服务器
           console.log(file);
+        },
+        goMyProblem(){
+          this.$router.push('/myProblem')
         }
       }
     }

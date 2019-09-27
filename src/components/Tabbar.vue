@@ -30,16 +30,22 @@
       我的
     </van-tabbar-item>
   </van-tabbar>
-    <van-popup v-model="show" position="bottom" :style="{ height: '22%' }">
+    <van-popup v-model="show" position="bottom" :style="{ height: '20%' }" closeable close-icon="close">
+      <van-cell title="操作">
+        <van-icon
+          slot="icon"
+          name="records"
+          style="line-height: inherit;"
+        />
+      </van-cell>
       <van-cell title="提个问题" @click="goPopup('problem')"/>
       <van-cell title="回答问题" @click="goPopup('answer')"/>
-      <van-cell title="取消" is-link arrow-direction="down" @click="cancle"/>
     </van-popup>
   </div>
 </template>
 
 <script>
-  import { Tabbar, TabbarItem,Popup,Cell,Dialog  } from 'vant';
+  import { Tabbar, TabbarItem, Popup, Cell, Dialog, Icon  } from 'vant';
   import { getToken } from '@/utils/auth';
     export default {
       name: "Tabbar",
@@ -48,7 +54,8 @@
           [TabbarItem.name]:TabbarItem,
           [Popup .name]:Popup,
           [Cell .name]:Cell,
-          [Dialog .name]:Dialog
+          [Dialog .name]:Dialog,
+          [Icon .name]:Icon
       },
       data() {
         return {

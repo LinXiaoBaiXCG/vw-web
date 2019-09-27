@@ -19,23 +19,29 @@
       <template slot="label">
         <span class="custom-label">{{this.result.introduction}}</span>
       </template>
-      <van-button plain type="info" size="mini" style="float: right"><van-icon name="plus" />关注</van-button>
+      <template slot="right-icon">
+        <van-button plain type="info" size="mini" style="float: right"><van-icon name="plus" style="line-height: inherit;"/>关注</van-button>
+      </template>
     </van-cell>
-      <van-cell :value="this.result.content"></van-cell>
+      <van-cell :title="this.result.content">
+        <template slot="label">
+          <span class="label">编辑于:{{formatTime(this.result.updateTime,true)}}</span>
+        </template>
+      </van-cell>
     </van-cell-group>
     <van-cell class="footer">
-      <template slot="label">
-        <span class="custom-label">这里应该是底部</span>
-      </template>
+      <template slot="icon">
       <van-button type="info" size="mini" @click="doAgree"><van-icon name="good-job" /> {{this.result.userIsAgree? '已赞同':'赞同'}} {{this.result.agreeCount}}</van-button>
+      </template>
     </van-cell>
   </div>
 </template>
 
 <script>
-  import Search from '@/components/Search'
-  import {Cell, CellGroup, Icon,Button } from 'vant'
-  import {details, agree} from '@/api/answer'
+  import Search from '@/components/Search';
+  import {Cell, CellGroup, Icon,Button } from 'vant';
+  import {details, agree} from '@/api/answer';
+  import {formatTime} from '@/utils';
   export default {
     name: "detail",
     components: {
@@ -60,6 +66,7 @@
       })
     },
     methods: {
+      formatTime,
       //初始化回答信息
       getDetails(id) {
         details(id).then(res => {

@@ -10,14 +10,18 @@
     <template slot="label">
       <span class="custom-label">{{this.one.problemDetails}}</span>
     </template>
-    <van-button plain type="info" size="mini" style="float: right"><van-icon name="plus" />关注</van-button>
+    <template slot="right-icon">
+      <van-button plain type="info" size="mini" style="float: right"><van-icon name="plus" style="line-height: inherit;"/>关注</van-button>
+    </template>
   </van-cell>
   </van-sticky>
     <van-cell style="margin-top: 8px">
       <template slot="title">
-        <span class="custom-title">全部</span>
+        <span class="custom-title">全部  {{this.total}}</span>
       </template>
-      <van-button plain type="info" size="mini" style="float: right" @click="doEdit"><van-icon name="edit" />写回答</van-button>
+      <template slot="right-icon">
+        <van-button plain type="info" size="mini" style="float: right" @click="doEdit"><van-icon name="edit" style="line-height: inherit;"/>写回答</van-button>
+      </template>
     </van-cell>
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
       <van-list
@@ -63,6 +67,7 @@
             active: '',
             one: {},
             list: [],
+            total: '',
             loading: false,
             finished: false,
             isLoading: false,
@@ -94,7 +99,8 @@
         onLoad() {
           setTimeout(() => {
             list(this.params).then(res => {
-              let resultList = res.records
+              let resultList = res.records;
+              this.total = res.total;
               if (resultList.length > 0) {
                 this.finished = false;
                 if (this.params.current == 1){

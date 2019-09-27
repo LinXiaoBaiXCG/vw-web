@@ -85,5 +85,13 @@ export default new Router({
         title: '全部回答'
       }
     },
+    {
+      path: '/myProblem',
+      name: 'myProblem',
+      component: () => import('@/view/my/myProblem'),
+      meta: {
+        title: '我的提问'
+      }
+    },
   ]
 })
