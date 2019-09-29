@@ -16,7 +16,7 @@
       <van-cell
         v-for="item in list"
         :key="item.id"
-        @click="getAllProblem(item.id)"
+        @click="getAllAnswer(item.id)"
         style="margin-bottom: 8px"
       >
         <template slot="title">
@@ -95,7 +95,7 @@
           this.$router.push('/problem')
         },
         //跳转至获取全部回答
-        getAllProblem(id){
+        getAllAnswer(id){
           this.$router.push({
             name: "all",
             query: {

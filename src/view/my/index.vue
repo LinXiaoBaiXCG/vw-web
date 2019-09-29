@@ -14,16 +14,21 @@
     />
     </van-uploader>
     </div>
-
+    <van-grid :column-num="2">
+      <van-grid-item :text="result.username">
+      </van-grid-item>
+      <van-grid-item text="修改信息">
+      </van-grid-item>
+    </van-grid>
     <van-grid>
-      <van-grid-item text="我的回答" >
+      <van-grid-item text="我的回答" @click="goMyAnswer">
         <template slot="icon">
-          <span>{{this.result.answerCount}}</span>
+          <span>{{result.answerCount}}</span>
         </template>
       </van-grid-item>
       <van-grid-item text="我的提问" @click="goMyProblem">
         <template slot="icon">
-          <span>{{this.result.problemCount}}</span>
+          <span>{{result.problemCount}}</span>
         </template>
       </van-grid-item>
       <van-grid-item text="关注的问题" >
@@ -81,6 +86,9 @@
         },
         goMyProblem(){
           this.$router.push('/myProblem')
+        },
+        goMyAnswer(){
+          this.$router.push('/myAnswer')
         }
       }
     }

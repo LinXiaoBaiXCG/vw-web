@@ -23,7 +23,7 @@
         <van-button plain type="info" size="mini" style="float: right"><van-icon name="plus" style="line-height: inherit;"/>关注</van-button>
       </template>
     </van-cell>
-      <van-cell>
+      <van-cell class="content">
         <template slot="title">
           <div v-html="result.content"></div>
         </template>
@@ -32,6 +32,7 @@
         </template>
       </van-cell>
     </van-cell-group>
+    <!--底部固定栏-->
     <van-cell class="footer">
       <template slot="icon">
       <van-button type="info" size="mini" @click="doAgree"><van-icon name="good-job" /> {{result.userIsAgree? '已赞同':'赞同'}} {{result.agreeCount}}</van-button>
@@ -90,13 +91,8 @@
         let params = {uuid: this.result.uuid,
                       userIsAgree: !this.result.userIsAgree}
         agree(params).then(res =>{
-          if (res.userIsAgree) {
             this.result.userIsAgree = res.userIsAgree;
             this.result.agreeCount = res.agreeCount
-          }else{
-            this.result.userIsAgree = res.userIsAgree;
-            this.result.agreeCount = res.agreeCount
-          }
         })
       }
     }
@@ -108,4 +104,22 @@
   position: fixed;
   bottom: 0;
 }
+</style>
+
+<style>
+  .content ol,ul{
+    padding-left: 20px;
+  }
+  .content ol li{
+    list-style-type:decimal;
+    list-style-position:inside;
+  }
+  .content ul li{
+    list-style-type:disc;
+    list-style-position:inside;
+  }
+  .content img {
+    width: 100%;
+    height: auto;
+  }
 </style>

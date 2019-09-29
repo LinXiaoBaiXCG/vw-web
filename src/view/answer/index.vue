@@ -8,6 +8,7 @@
         autosize
         disabled
       />
+      <!--富文本编辑器-->
       <quill-editor
         v-model="form.content"
         ref="myQuillEditor"

@@ -30,7 +30,7 @@
       我的
     </van-tabbar-item>
   </van-tabbar>
-    <van-popup v-model="show" position="bottom" :style="{ height: '20%' }" closeable close-icon="close">
+    <van-popup v-model="show" position="bottom" :style="{ height: '21%' }" closeable close-icon="close">
       <van-cell title="操作">
         <van-icon
           slot="icon"

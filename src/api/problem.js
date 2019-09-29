@@ -15,3 +15,11 @@ export function userProblem(params) {
     params
   })
 }
+
+export function search(params) {
+  return request({
+    url: '/api/problem/search',
+    method: 'get',
+    params
+  })
+}

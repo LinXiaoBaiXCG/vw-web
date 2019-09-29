@@ -30,3 +30,11 @@ export function agree(params) {
     params
   })
 }
+
+export function getMyAnswer(params) {
+  return request({
+    url: '/api/answer/getMyAnswer',
+    method: 'get',
+    params
+  })
+}
