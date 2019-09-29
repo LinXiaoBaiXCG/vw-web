@@ -150,3 +150,10 @@ export function removeClass(ele, cls) {
     ele.className = ele.className.replace(reg, ' ')
   }
 }
+
+/**
+ * 过滤HTML标签
+ */
+export function filterHtmlTag(str) {
+    return str.replace(/<[^>]+>|&[^>]+;/g,"").trim();
+}

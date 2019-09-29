@@ -7,6 +7,13 @@ import 'vant/lib/index.css';
 //引入微信标题
 import VueWechatTitle from 'vue-wechat-title';
 Vue.use(VueWechatTitle)
+//富文本编辑器
+import VueQuillEditor from 'vue-quill-editor'
+//引入编辑器css
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+Vue.use(VueQuillEditor)
 
 Vue.config.productionTip = false
 

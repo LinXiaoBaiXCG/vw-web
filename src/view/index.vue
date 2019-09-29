@@ -21,7 +21,7 @@
             <template slot="title">
               <span class="custom-title">{{item.problemTitle}}</span><br/>
               <van-icon :name="item.avatar" /><span class="lable">{{item.username}}</span><br/>
-              <span class="custom-value">{{item.content}}</span>
+              <span class="custom-value">{{filterHtmlTag(item.content)}}</span>
             </template>
           </van-cell>
         </van-list>
@@ -35,10 +35,11 @@
   </div>
 </template>
 <script>
-  import Tabbar from '@/components/Tabbar'
-  import Search from '@/components/Search'
+  import Tabbar from '@/components/Tabbar';
+  import Search from '@/components/Search';
   import {Tab, Tabs, List, Cell, CellGroup, Icon, PullRefresh } from 'vant';
-  import {list} from '@/api/answer'
+  import {list} from '@/api/answer';
+  import {filterHtmlTag} from '@/utils';
 
   export default {
     name:"home",
@@ -68,6 +69,8 @@
       };
     },
     methods: {
+      //过滤HTML标签
+      filterHtmlTag,
       //查看详情
       lookDetails(id) {
         //通过路由传参

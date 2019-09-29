@@ -5,33 +5,36 @@
     <van-cell-group style="margin-bottom: 40px">
     <van-cell>
       <template slot="title">
-        <span class="custom-title">{{this.result.problemTitle}}</span><br/>
+        <span class="custom-title">{{result.problemTitle}}</span><br/>
       </template>
       <template slot="label">
-        <span class="custom-label" @click="getAllProblem()">查看全部{{this.result.problemCount}}个回答</span><van-icon name="arrow"/>
+        <span class="custom-label" @click="getAllProblem()">查看全部{{result.problemCount}}个回答</span><van-icon name="arrow"/>
       </template>
     </van-cell>
     <van-cell>
       <template slot="title">
-        <van-icon :name="this.result.avatar" style="float: left" size="45px"/>
-        <span class="custom-title">{{this.result.username}}</span><br/>
+        <van-icon :name="result.avatar" style="float: left" size="45px"/>
+        <span class="custom-title">{{result.username}}</span><br/>
       </template>
       <template slot="label">
-        <span class="custom-label">{{this.result.introduction}}</span>
+        <span class="custom-label">{{result.introduction}}</span>
       </template>
       <template slot="right-icon">
         <van-button plain type="info" size="mini" style="float: right"><van-icon name="plus" style="line-height: inherit;"/>关注</van-button>
       </template>
     </van-cell>
-      <van-cell :title="this.result.content">
+      <van-cell>
+        <template slot="title">
+          <div v-html="result.content"></div>
+        </template>
         <template slot="label">
-          <span class="label">编辑于:{{formatTime(this.result.updateTime,true)}}</span>
+          <span>编辑于:{{formatTime(result.updateTime,true)}}</span>
         </template>
       </van-cell>
     </van-cell-group>
     <van-cell class="footer">
       <template slot="icon">
-      <van-button type="info" size="mini" @click="doAgree"><van-icon name="good-job" /> {{this.result.userIsAgree? '已赞同':'赞同'}} {{this.result.agreeCount}}</van-button>
+      <van-button type="info" size="mini" @click="doAgree"><van-icon name="good-job" /> {{result.userIsAgree? '已赞同':'赞同'}} {{result.agreeCount}}</van-button>
       </template>
     </van-cell>
   </div>

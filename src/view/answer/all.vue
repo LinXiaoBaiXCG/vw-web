@@ -38,7 +38,7 @@
         >
           <template slot="title">
             <van-icon :name="item.avatar" /><span class="lable">{{item.username}}</span><br/>
-            <span class="custom-value">{{item.content}}</span>
+            <span class="custom-value">{{filterHtmlTag(item.content)}}</span>
           </template>
         </van-cell>
       </van-list>
@@ -47,9 +47,10 @@
 </template>
 
 <script>
-  import Search from '@/components/Search'
-  import {Cell, CellGroup, Icon,Button, PullRefresh, List, Sticky} from 'vant'
-  import {list} from '@/api/answer'
+  import Search from '@/components/Search';
+  import {Cell, CellGroup, Icon,Button, PullRefresh, List, Sticky} from 'vant';
+  import {list} from '@/api/answer';
+  import {filterHtmlTag} from '@/utils';
     export default {
       name: "all",
       components: {
@@ -85,6 +86,8 @@
         })
       },
       methods: {
+        //过滤HTML标签
+        filterHtmlTag,
         //查看详情
         lookDetails(id) {
           //通过路由传参
