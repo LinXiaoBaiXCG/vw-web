@@ -39,7 +39,7 @@
         />
       </van-cell>
       <van-cell title="提个问题" @click="goPopup('problem')"/>
-      <van-cell title="回答问题" @click="goPopup('answer')"/>
+      <!--<van-cell title="回答问题" @click="goPopup('answer')"/>-->
     </van-popup>
   </div>
 </template>

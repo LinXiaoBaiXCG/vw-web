@@ -61,7 +61,7 @@ service.interceptors.response.use(
     }
     if (code === 401) {
       Notify({
-        message: '账户异常，请登录',
+        message: '请登录',
         duration: 2500
       });
       router.push({ path: '/login' })
