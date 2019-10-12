@@ -10,7 +10,7 @@
       width="10rem"
       height="10rem"
       fit="cover"
-      :src="this.result.avatar"
+      :src="result.avatar"
     />
     </van-uploader>
     </div>

@@ -2,7 +2,7 @@
   <div>
     <van-cell>
       <template slot="title">
-        <span class="custom-title">我的回答  {{this.total}}</span>
+        <span class="custom-title">我的回答  {{total}}</span>
       </template>
     </van-cell>
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">

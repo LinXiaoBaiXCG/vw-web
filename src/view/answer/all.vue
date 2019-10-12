@@ -5,10 +5,10 @@
   <van-sticky>
   <van-cell>
     <template slot="title">
-      <span class="custom-title">{{this.one.problemTitle}}</span><br/>
+      <span class="custom-title">{{one.problemTitle}}</span><br/>
     </template>
     <template slot="label">
-      <span class="custom-label">{{this.one.problemDetails}}</span>
+      <span class="custom-label">{{one.problemDetails}}</span>
     </template>
     <template slot="right-icon">
       <van-button plain type="info" size="mini" style="float: right"><van-icon name="plus" style="line-height: inherit;"/>关注</van-button>
@@ -17,7 +17,7 @@
   </van-sticky>
     <van-cell style="margin-top: 8px">
       <template slot="title">
-        <span class="custom-title">全部  {{this.total}}</span>
+        <span class="custom-title">全部  {{total}}</span>
       </template>
       <template slot="right-icon">
         <van-button plain type="info" size="mini" style="float: right" @click="doEdit"><van-icon name="edit" style="line-height: inherit;"/>写回答</van-button>

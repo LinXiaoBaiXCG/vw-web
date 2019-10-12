@@ -2,7 +2,7 @@
   <div>
   <van-cell>
     <template slot="title">
-      <span class="custom-title">我的提问  {{this.total}}</span>
+      <span class="custom-title">我的提问  {{total}}</span>
     </template>
     <van-button plain type="info" size="mini" style="float: right" @click="goAddProblem"><van-icon name="edit" />去提问</van-button>
   </van-cell>
