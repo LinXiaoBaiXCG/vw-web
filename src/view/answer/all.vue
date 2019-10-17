@@ -110,6 +110,7 @@
                   this.list = '';
                   this.list = resultList;
                   //返回一条数据用户渲染标题和简介
+                  // TODO 该逻辑需优化
                   this.one = resultList[0];
                 } else {
                   this.list = this.list.concat(resultList);
