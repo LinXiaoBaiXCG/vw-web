@@ -38,3 +38,11 @@ export function getMyAnswer(params) {
     params
   })
 }
+
+export function getRecommendList(params) {
+  return request({
+    url: '/api/answer/getRecommendList',
+    method: 'get',
+    params
+  })
+}

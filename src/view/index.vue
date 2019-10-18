@@ -27,7 +27,29 @@
         </van-list>
         </van-pull-refresh>
       </van-tab>
-      <van-tab title="推荐">推荐</van-tab>
+      <van-tab title="推荐">
+        <van-pull-refresh v-model="recommendIsLoading" @refresh="onRefreshRecommendList">
+          <van-list
+            v-model="recommendLoading"
+            :finished="recommendFinished"
+            finished-text="没有更多了"
+            @load="onLoadRecommendList"
+            style="margin-bottom: 45px">
+            <van-cell
+              v-for="item in recommendList"
+              :key="item.id"
+              @click="lookDetails(item.id)"
+              style="margin-top: 8px"
+            >
+              <template slot="title">
+                <span class="custom-title">{{item.problemTitle}}</span><br/>
+                <van-icon :name="item.avatar" /><span class="lable">{{item.username}}</span><br/>
+                <span class="custom-value">{{filterHtmlTag(item.content)}}</span>
+              </template>
+            </van-cell>
+          </van-list>
+        </van-pull-refresh>
+      </van-tab>
       <van-tab title="热门">热门</van-tab>
     </van-tabs>
     <!--标签栏-->
@@ -38,7 +60,7 @@
   import Tabbar from '@/components/Tabbar';
   import Search from '@/components/Search';
   import {Tab, Tabs, List, Cell, CellGroup, Icon, PullRefresh } from 'vant';
-  import {list} from '@/api/answer';
+  import {list, getRecommendList} from '@/api/answer';
   import {filterHtmlTag} from '@/utils';
 
   export default {
@@ -65,6 +87,14 @@
           type: 1,
           size: 10,
           current: 1
+        },
+        recommendList: [],
+        recommendLoading: false,
+        recommendFinished: false,
+        recommendIsLoading: false,
+        recommendListParams: {
+          size: 10,
+          current: 1
         }
       };
     },
@@ -81,25 +111,46 @@
           }
         })
       },
-      //列表加载
+      //我的列表加载
       onLoad() {
         setTimeout(() => {
-        list(this.params).then(res => {
-          let resultList = res.records
-          if (resultList.length > 0) {
-            this.finished = false;
-            if (this.params.current == 1){
-              this.list = '';
-              this.list = resultList;
+          list(this.params).then(res => {
+            let resultList = res.records
+            if (resultList.length > 0) {
+              this.finished = false;
+              if (this.params.current == 1){
+                this.list = '';
+                this.list = resultList;
+              } else {
+                this.list = this.list.concat(resultList);
+              }
+              this.params.current += 1;
             } else {
-              this.list = this.list.concat(resultList);
+              this.finished = true;
             }
-            this.params.current += 1;
-          } else {
-            this.finished = true;
-          }
-          this.loading = false;
-        })
+            this.loading = false;
+          })
+        }, 500);
+      },
+      //推荐列表加载
+      onLoadRecommendList() {
+        setTimeout(() => {
+          getRecommendList(this.recommendListParams).then(res => {
+            let resultList = res.records
+            if (resultList.length > 0) {
+              this.recommendFinished = false;
+              if (this.recommendListParams.current == 1){
+                this.recommendList = '';
+                this.recommendList = resultList;
+              } else {
+                this.recommendList = this.recommendList.concat(resultList);
+              }
+              this.recommendListParams.current += 1;
+            } else {
+              this.recommendFinished = true;
+            }
+            this.recommendLoading = false;
+          })
         }, 500);
       },
       //下拉刷新
@@ -107,6 +158,12 @@
         this.params.current = 1;
         this.onLoad();
         this.isLoading = false;
+      },
+      //推荐列表下拉刷新
+      onRefreshRecommendList() {
+        this.recommendList.current = 1;
+        this.onLoadRecommendList();
+        this.recommendLoading = false;
       }
     }
   }
