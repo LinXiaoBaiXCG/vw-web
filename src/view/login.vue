@@ -24,12 +24,12 @@
       </van-cell>
       <!--登录按钮-->
         <van-button type="primary" size="large" @click="doLogin">登录</van-button>
-      <!--分割线-->
-        <van-divider style="margin-top: 70px">其他方式登录</van-divider>
-      <!--微信-->
-      <van-cell>
-        <img src="../assets/weixin.png" style="margin: 20px 120px 10px 20px" @click="wxLogin">
-      </van-cell>
+      <!--&lt;!&ndash;分割线&ndash;&gt;-->
+        <!--<van-divider style="margin-top: 70px">其他方式登录</van-divider>-->
+      <!--&lt;!&ndash;微信&ndash;&gt;-->
+      <!--<van-cell>-->
+        <!--<img src="../assets/weixin.png" style="margin: 20px 120px 10px 20px" @click="wxLogin">-->
+      <!--</van-cell>-->
       </van-cell-group>
     </div>
 </template>
@@ -51,8 +51,8 @@
       data() {
         return {
           form: {
-            phone: '',
-            password: ''
+            phone: '18300000000',
+            password: 'a123456'
           }
         }
       },

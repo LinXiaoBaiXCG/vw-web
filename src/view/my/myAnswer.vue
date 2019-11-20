@@ -60,6 +60,16 @@
     methods: {
       filterHtmlTag,
       formatTime,
+      //查看详情
+      lookDetails(id) {
+        //通过路由传参
+        this.$router.push({
+          name: "details",
+          query: {
+            id:id
+          }
+        })
+      },
       //列表加载
       onLoad() {
         setTimeout(() => {

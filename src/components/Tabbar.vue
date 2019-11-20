@@ -15,13 +15,13 @@
     >
       操作
     </van-tabbar-item>
-    <van-tabbar-item
-      replace
-      to="/notice"
-      icon="bell"
-    >
-      通知
-    </van-tabbar-item>
+    <!--<van-tabbar-item-->
+      <!--replace-->
+      <!--to="/notice"-->
+      <!--icon="bell"-->
+    <!--&gt;-->
+      <!--通知-->
+    <!--</van-tabbar-item>-->
     <van-tabbar-item
       replace
       to="/my"

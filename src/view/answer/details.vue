@@ -19,9 +19,9 @@
       <template slot="label">
         <span class="custom-label">{{result.introduction}}</span>
       </template>
-      <template slot="right-icon">
-        <van-button plain type="info" size="mini" style="float: right"><van-icon name="plus" style="line-height: inherit;"/>关注</van-button>
-      </template>
+      <!--<template slot="right-icon">-->
+        <!--<van-button plain type="info" size="mini" style="float: right"><van-icon name="plus" style="line-height: inherit;"/>关注</van-button>-->
+      <!--</template>-->
     </van-cell>
       <van-cell class="content">
         <template slot="title">

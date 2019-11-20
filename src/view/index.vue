@@ -50,7 +50,7 @@
           </van-list>
         </van-pull-refresh>
       </van-tab>
-      <van-tab title="热门">热门</van-tab>
+      <!--<van-tab title="热门">热门</van-tab>-->
     </van-tabs>
     <!--标签栏-->
     <tabbar/>
